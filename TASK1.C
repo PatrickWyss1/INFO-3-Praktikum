@@ -70,6 +70,17 @@ void demoTASK1_01(){
 	return;
 }
 
+
+
+BlackBoxSafe::BlackBoxSafe(int pwdLength, int symbSetSize) : BlackBoxUnsafe(pwdLength, symbSetSize){
+	pwd_ = sha256(pwd_);
+};
+
+string BlackBoxSafe::input(string strPwd){
+		if(strPwd.compare(pwd_) == 0){
+				return string("ACCESS ACCEPTED");
+			}
+			return string("ACCESS DENIED");
+		}
+
 }
-
-

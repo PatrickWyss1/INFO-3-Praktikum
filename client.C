@@ -8,7 +8,9 @@
 #include <string>
 #include <iostream>
 #include <unistd.h> //contains various constants
-
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "SIMPLESOCKET.H"
 
 using namespace std;
@@ -22,6 +24,8 @@ int main() {
 	//connect to host
 	c.conn(host , 2022);
 
+
+
 	int i=0;
 	bool goOn=1;
 	while(goOn){ // send and receive data
@@ -31,6 +35,7 @@ int main() {
 		}else{
 			msg = string("client wants this");
 		}
+
 		cout << "client sends:" << msg << endl;
 		c.sendData(msg);
 		msg = c.receive(32);
