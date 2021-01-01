@@ -1,0 +1,16 @@
+!SESSION 2021-01-01 14:01:01.018 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_222
+java.vendor=Private Build
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.core 1 0 2021-01-01 14:01:39.577
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-01 14:01:49.201
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-01-01 14:01:49.201
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
