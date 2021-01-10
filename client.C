@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <unistd.h> //contains various constants
 #include <time.h>
@@ -13,7 +14,17 @@
 #include <stdio.h>
 #include "SIMPLESOCKET.H"
 
+
+
 using namespace std;
+
+string pwdGen(int strLen,int symbLen);
+
+string variables();
+
+string Bot(string input);
+
+
 
 int main() {
 	srand(time(NULL));
@@ -29,12 +40,8 @@ int main() {
 	int i=0;
 	bool goOn=1;
 	while(goOn){ // send and receive data
-		if((rand() % 20) < i++){
-			msg = string("BYEBYE");
-			goOn = 0;
-		}else{
-			msg = string("client wants this");
-		}
+		string var = variables();
+		msg = Bot(var);
 
 		cout << "client sends:" << msg << endl;
 		c.sendData(msg);
@@ -45,4 +52,51 @@ int main() {
 	}
 }
 
+string pwdGen(int strLen, int symbLen){
+	int symbolIdx;
+	const string SYMBOLS = "ABCDEFGHIJKLMNOPQRTSTUVWXYZabcdefghijklmopqrstuvwxyz0123456789";
+		string pwdGuess = string("");
+		char *SymbArray_ = new char [symbLen + 1];
+			strncpy(SymbArray_, SYMBOLS.c_str(), symbLen+1);
 
+		for(int i=0; i < strLen; i++){
+			symbolIdx = rand() % symbLen;
+			pwdGuess += SymbArray_[symbolIdx];
+		}
+		cout << pwdGuess << endl;
+		return pwdGuess;
+
+}
+
+string variables(){
+	char pwdLen, symb, runs;
+
+
+		cout << "Use Command makepwd![pwdLength, symbols] to create password" << endl;
+
+		int check = scanf("makepwd![%c,%c]", &pwdLen, &symb);
+		cout << pwdLen << symb << endl;
+		cout << "Use command startbot![runs] to crack password" << endl;
+
+		int res = scanf("startbot![%c]", &runs);
+		cout << "OK " << runs << endl;
+
+		string var = "";
+
+		var.append(0,pwdLen);
+		var.append(1, symb);
+		var.append(2,runs);
+		return var;
+
+
+}
+
+string Bot(string input){
+
+		for(int i = 0; i <= input[2]; i++){
+
+			return pwdGen(input[0],input[1]);
+
+
+		}
+}

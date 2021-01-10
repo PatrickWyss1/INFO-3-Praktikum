@@ -48,6 +48,7 @@ string BlackBoxUnsafe::randomPwd(int l){
 		symbolIdx = rand() % lengthSymbArray_;
 		pwd_ += charSymbArray_[symbolIdx];
 	}
+	cout << pwd_ << endl;
 	return pwd_;
 }
 
@@ -73,14 +74,26 @@ void demoTASK1_01(){
 
 
 BlackBoxSafe::BlackBoxSafe(int pwdLength, int symbSetSize) : BlackBoxUnsafe(pwdLength, symbSetSize){
+
 	pwd_ = sha256(pwd_);
 };
 
-string BlackBoxSafe::input(string strPwd){
-		if(strPwd.compare(pwd_) == 0){
+string BlackBoxSafe::safeInput(string strPwd, int a){
+	int len = strPwd.length();
+	string Pwd = "";
+	Pwd.append(strPwd, 0, (a));
+
+		string strPwdSafe = sha256(string(Pwd));
+
+
+
+		int b = strPwdSafe.length();
+				if(strPwdSafe.compare(0,b,pwd_) == 0){
 				return string("ACCESS ACCEPTED");
 			}
+				cout << strPwdSafe << endl;
 			return string("ACCESS DENIED");
+
 		}
 
 }

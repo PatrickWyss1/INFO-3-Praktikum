@@ -128,6 +128,7 @@ string TCPclient::receive(int size=512){
 
 
 TCPserver::TCPserver(int port, int maxDataSizeRecv){
+
 	maxDataSizeRecv_ = maxDataSizeRecv;
 	dataRecv_ = new char[maxDataSizeRecv_];
 
@@ -179,7 +180,7 @@ string TCPserver::response(string incomingMsg){
 		msg = string("BYEBYE"); // this return value
 		                        // will close server connections
 	}else{
-		msg = myResponse(incomingMsg);
+		msg = myResponse(string(incomingMsg));
 	}
 
 	cout << "received :" << incomingMsg << endl;

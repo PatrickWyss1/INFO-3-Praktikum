@@ -18,14 +18,17 @@
 
 #include "SIMPLESOCKET.H"
 #include "TASK1.H"
-
+#include <iostream>
+#include <string>
+using namespace std;
 using namespace TASK1;
+
 
 class myTCPServer : public TCPserver{
 public:
 	myTCPServer(int portNmb, int maxDataSizeRcv) : TCPserver(portNmb, maxDataSizeRcv){
-	box_ = nullptr;
-};
+		box_ = nullptr;
+}
 
 protected:
 	string myResponse(string input);
@@ -34,36 +37,45 @@ protected:
 
 
 };
+int LENGTH = 0;
 string myTCPServer::myResponse(string input){
-	if(input == string("ABC")){
-		if(box_ != nullptr){
+
+	int b = 0;
+	int res;
+if(input.compare(0,8,string("makepwd!")) == 0){
+	res = sscanf(input.c_str(), "makepwd![%i,%i]", &LENGTH, &b);
+}
+
+
+
+if((input.compare(0,8, string("makepwd!")) == 0) && res != 2){
+	return string("Missing Input Variables");
+}else if((res == 2) && (input.compare(0,8, string("makepwd!")) == 0)){
+	if(LENGTH == 0 || b == 0){
+		return string("Missing Input Variables");
+	}else{
 			delete box_;
-			box_ = new BlackBoxSafe(5,5);
+			box_ = new BlackBoxSafe(LENGTH,b);
+			cout << "hier ist das passwort:" <<  box_->pwd_ << endl;
 			return string("OKAY");
-		}
+	}
+
+
 	}else{
 		if(box_ != nullptr){
-			return(box_ ->input(input));
+
+			return(box_ ->safeInput(input,LENGTH));
 		}else{
-			return string("INIT BOX FIRST");
+			return string("INIT BOXES FIRST");
 		}
 
 	}
+if(input.compare(0,7, string("runBot!")) == 0){
 
 
+}
 
-	/*std::string befehl = input.substr(0, input.find(" "));
-	std::string ret = "";
-	if(befehl == "LOGIN"){
-		ret = "LOGIN VERSUCHT";
-	}else if(befehl == "NEUESPASSWORT"){
-			ret = "LOGIN VERSUCHT";
-		}else{
-			ret = "Befehl unbekannt";
-	}
-	return ret;
-*/
-	return string ("neue Daten");
+
 };
 
 int main(){
