@@ -72,21 +72,19 @@ string variables(){
 	char pwdLen, symb, runs;
 
 
-		cout << "Use Command makepwd![pwdLength, symbols] to create password" << endl;
+			cout << "Use Command makepwd![pwdLength, symbols, runs] to create password" << endl;
 
-		int check = scanf("makepwd![%c,%c]", &pwdLen, &symb);
-		cout << pwdLen << symb << endl;
-		cout << "Use command startbot![runs] to crack password" << endl;
+			int check = scanf("makepwd![%c,%c, %c]", &pwdLen, &symb, &runs);
+			cout << pwdLen << symb << runs << endl;
 
-		int res = scanf("startbot![%c]", &runs);
-		cout << "OK " << runs << endl;
 
-		string var = "";
+			string var = "";
 
-		var.append(0,pwdLen);
-		var.append(1, symb);
-		var.append(2,runs);
-		return var;
+			var.append(0,pwdLen);
+			var.append(1, symb);
+			var.append(2,runs);
+			return var;
+
 
 
 }

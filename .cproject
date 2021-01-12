@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
-		<cconfiguration id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1503654250">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1503654250" moduleId="org.eclipse.cdt.core.settings" name="Build (GNU)">
+		<cconfiguration id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1394713917">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1394713917" moduleId="org.eclipse.cdt.core.settings" name="Build (GNU)">
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.MachO64" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -14,18 +14,20 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1503654250" name="Build (GNU)" optionalBuildProperties="" parent="org.eclipse.cdt.build.core.emptycfg">
-					<folderInfo id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1503654250.330880743" name="/" resourcePath="">
-						<toolChain id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1047096425" name="GNU Autotools Toolchain" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolChain">
-							<targetPlatform id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.targetPlatform.1245485371" isAbstract="false" name="GNU Autotools Target Platform" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.targetPlatform"/>
-							<builder id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder.752708330" managedBuildOn="false" name="Autotools Makefile Generator.Build (GNU)" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder"/>
-							<tool id="org.eclipse.linuxtools.cdt.autotools.core.gnu.toolchain.tool.configure.620404685" name="configure" superClass="org.eclipse.linuxtools.cdt.autotools.core.gnu.toolchain.tool.configure"/>
-							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.autogen.185889953" name="autogen.sh" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.autogen"/>
-							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc.1997169056" name="GCC C Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc">
-								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1887147659" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+				<configuration buildProperties="" id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1394713917" name="Build (GNU)" optionalBuildProperties="" parent="org.eclipse.cdt.build.core.emptycfg">
+					<folderInfo id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1394713917.451025258" name="/" resourcePath="">
+						<toolChain id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.562031395" name="GNU Autotools Toolchain" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolChain">
+							<targetPlatform id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.targetPlatform.1403098383" isAbstract="false" name="GNU Autotools Target Platform" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.targetPlatform"/>
+							<builder id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder.2128629073" managedBuildOn="false" name="Autotools Makefile Generator.Build (GNU)" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder"/>
+							<tool id="org.eclipse.linuxtools.cdt.autotools.core.gnu.toolchain.tool.configure.1018861871" name="configure" superClass="org.eclipse.linuxtools.cdt.autotools.core.gnu.toolchain.tool.configure">
+								<option id="org.eclipse.linuxtools.cdt.autotools.core.option.configure.name.1808948017" superClass="org.eclipse.linuxtools.cdt.autotools.core.option.configure.name" value="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1394713917" valueType="string"/>
 							</tool>
-							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gpp.653730977" name="GCC C++ Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gpp">
-								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.692347151" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.autogen.811599905" name="autogen.sh" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.autogen"/>
+							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc.1238006979" name="GCC C Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.388936708" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gpp.1858374688" name="GCC C++ Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gpp">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.375902539" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -38,10 +40,9 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="Praktikum.null.684584768" name="Praktikum"/>
+		<project id="Inf3.null.113570041" name="Inf3"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
 		<buildTargets>
 			<target name="all" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
