@@ -129,6 +129,7 @@ string TCPclient::receive(int size=512){
 
 TCPserver::TCPserver(int port, int maxDataSizeRecv){
 
+
 	maxDataSizeRecv_ = maxDataSizeRecv;
 	dataRecv_ = new char[maxDataSizeRecv_];
 
@@ -155,6 +156,9 @@ void TCPserver::run(){
 
 	while(1)
 	{
+		for(int i = 0; i < maxDataSizeRecv_; i++){
+				dataRecv_[i] = '\0';
+			}
 		read(clintConnt_,dataRecv_, (size_t)maxDataSizeRecv_);
 		output = response(string(dataRecv_));
 		dataSend_ = output.c_str();
