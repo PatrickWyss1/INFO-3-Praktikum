@@ -46,8 +46,6 @@ if(input.compare(0,8,string("makepwd!")) == 0){
 	res = sscanf(input.c_str(), "makepwd![%i,%i]", &LENGTH, &b);
 }
 
-
-
 if((input.compare(0,8, string("makepwd!")) == 0) && res != 2){
 	return string("Missing Input Variables");
 }else if((res == 2) && (input.compare(0,8, string("makepwd!")) == 0)){
@@ -56,7 +54,7 @@ if((input.compare(0,8, string("makepwd!")) == 0) && res != 2){
 	}else{
 			delete box_;
 			box_ = new BlackBoxSafe(LENGTH,b);
-			cout << "hier ist das passwort:" <<  box_->pwd_ << endl;
+
 			return string("OKAY");
 	}
 
@@ -70,10 +68,7 @@ if((input.compare(0,8, string("makepwd!")) == 0) && res != 2){
 		}
 
 	}
-if(input.compare(0,7, string("runBot!")) == 0){
 
-
-}
 
 
 };

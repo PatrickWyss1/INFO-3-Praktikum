@@ -48,7 +48,7 @@ string BlackBoxUnsafe::randomPwd(int l){
 		symbolIdx = rand() % lengthSymbArray_;
 		pwd_ += charSymbArray_[symbolIdx];
 	}
-	cout << pwd_ << endl;
+
 	return pwd_;
 }
 
@@ -91,7 +91,7 @@ string BlackBoxSafe::safeInput(string strPwd, int a){
 				if(strPwdSafe.compare(0,b,pwd_) == 0){
 				return string("ACCESS ACCEPTED");
 			}
-				cout << strPwdSafe << endl;
+
 			return string("ACCESS DENIED");
 
 		}

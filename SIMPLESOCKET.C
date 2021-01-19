@@ -187,8 +187,8 @@ string TCPserver::response(string incomingMsg){
 		msg = myResponse(string(incomingMsg));
 	}
 
-	cout << "received :" << incomingMsg << endl;
-	cout << "send back:" << msg << endl;
+	//cout << "received :" << incomingMsg << endl;
+	//cout << "send back:" << msg << endl;
 
 	return msg;
 }

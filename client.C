@@ -18,57 +18,96 @@
 using namespace std;
 
 
-int counter = 1;
 
+/**
+ * \function pwdGen
+ * \brief random password Generator to produce different password guesses based on input parameters
+ */
 string pwdGen(int strLen,int symbLen);
 string pwdGen_02(int strLen, int symbLen);
 
 /**
  * \class Vars
  *
- * \brief stores pwdLen,symbLen and runs, which is used to generate passwords and run the password-guesser
+ * \brief stores parameters which are used to generate passwords and run the password-guesser
  */
 
 class Vars{
 public:
-	int a,b,c;
+	/**
+	 *\brief stores the length of the password to be created server-side and guessed by client
+	 */
+	int a_;
+	/**
+	 * \brief stores the length/amount of symbols of the alphabet that the passwords can be generated with
+	 */
+	int b_;
+	/**
+	 * \brief stores the amount of of times the client should guess different passwords correctly
+	 */
+	int c_;
 };
+
 Vars variables();
 
 string Bot(Vars a);
 string Bot_02(Vars a);
 
 
-int main() {
+int main(int argc, char *argv[]) {
+
+	if(argc != 4){	//checks if an adequate amount of parameters was given when running client.C
+			cout << "Wrong number of command line parameters" << endl;
+			cout << "1. Argument: password length\n2. Argument: Alphabet length\n3. Argument: Number of runs\n" << endl;
+			exit(0);
+		}
+
+
 	srand(time(NULL));
-	TCPclient c;
+	TCPclient c; // initiates client object
 	string host = "localhost";
 	string msg;
 
 	//connect to host
 	c.conn(host , 2022);
 
-
-
 	int i=0;
 	int counter = 1;
-	bool goOn=1;
-	//while(goOn){ // send and receive data
-		Vars var;
-		var = variables();
 
-		string initmsg = "makepwd![]";
-		string convert;
-		stringstream ss;
-		ss << var.a << "," << var.b;
-		ss >> convert;
+	Vars var;
 
-		initmsg.insert(9, convert);
+
+
+	sscanf(argv[1], "%i", &var.a_);
+	sscanf(argv[2], "%i", &var.b_);
+	sscanf(argv[3], "%i", &var.c_);
+
+	string initmsg = "makepwd![]";
+	string convert;
+	stringstream ss;
+	ss << var.a_ << "," << var.b_;
+	ss >> convert;
+	initmsg.insert(9, convert);
+
+
+	for(int r = 0; r < var.c_; r++){
 
 		c.sendData(initmsg);
-
-
+		counter = 0;
 		if((c.receive(32) == "OKAY")){
+
+			msg = "";
+			while(msg != "ACCESS ACCEPTED"){
+
+				msg = Bot(var);
+				c.sendData(msg);
+				msg = c.receive(32);
+				counter++;
+			}
+
+
+
+	/*
 		for(int x = 0; x < var.c; x++){ //loop to send newly generated passwords to server a user-defined amount of times
 			msg = Bot(var);
 			c.sendData(msg);
@@ -84,13 +123,14 @@ int main() {
 				break;
 			}
 
-		}
-		cout << "Bot finished after " << counter-1 << " attempts." << endl;
+		}*/
+		cout <<  counter << endl;
 		}else{
 			cout << "try again!" << endl;
 		}
+	}
 
-		//}
+		}
 
 	/*	msg = Bot(var);
 
@@ -100,7 +140,7 @@ int main() {
 		cout << "got response:" << msg << endl;
 		sleep(1);*/
 
-	}
+//	}
 
 
 string pwdGen(int strLen, int symbLen){ // random password generator to produce guesses of the password saved in the server
@@ -164,9 +204,9 @@ Vars variables(){ //asks user for input to save the values for Password length, 
 			//cout << "in variables: "<< pwdLen << symb << runs << endl;
 
 			Vars a;
-			a.a = pwdLen;
-			a.b = symb;
-			a.c = runs;
+			a.a_ = pwdLen;
+			a.b_ = symb;
+			a.c_ = runs;
 
 			//string var = "";
 			//var[0] = pwdLen;
@@ -181,7 +221,7 @@ Vars variables(){ //asks user for input to save the values for Password length, 
 
 string Bot(Vars a){ // Returns the guessed password generator by the random password generator
 
-			return pwdGen(a.a,a.b);
+			return pwdGen(a.a_,a.b_);
 
 }
 /*
