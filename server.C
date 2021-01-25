@@ -38,6 +38,7 @@ protected:
 
 };
 int LENGTH = 0;
+
 string myTCPServer::myResponse(string input){
 
 	int b = 0;
@@ -54,16 +55,22 @@ if((input.compare(0,8, string("makepwd!")) == 0) && res != 2){
 	}else{
 			delete box_;
 			box_ = new BlackBoxSafe(LENGTH,b);
+			cout << "OKAY" << endl;
+			cout << box_->pwd_ << endl;
 
 			return string("OKAY");
+
 	}
 
 
 	}else{
 		if(box_ != nullptr){
+			//cout << box_ ->safeInput(input,LENGTH) << endl;
+			//cout << input << endl;
 
 			return(box_ ->safeInput(input,LENGTH));
 		}else{
+
 			return string("INIT BOXES FIRST");
 		}
 

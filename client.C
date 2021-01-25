@@ -14,8 +14,14 @@
 #include <stdio.h>
 #include "SIMPLESOCKET.H"
 #include <sstream>
+#include "Algorithm"
+#include <algorithm>
 
 using namespace std;
+
+int attempts = 1;
+
+
 
 
 
@@ -55,6 +61,9 @@ string Bot_02(Vars a);
 
 
 int main(int argc, char *argv[]) {
+	clock_t begin = clock();
+
+
 
 	if(argc != 4){	//checks if an adequate amount of parameters was given when running client.C
 			cout << "Wrong number of command line parameters" << endl;
@@ -76,8 +85,6 @@ int main(int argc, char *argv[]) {
 
 	Vars var;
 
-
-
 	sscanf(argv[1], "%i", &var.a_);
 	sscanf(argv[2], "%i", &var.b_);
 	sscanf(argv[3], "%i", &var.c_);
@@ -88,22 +95,40 @@ int main(int argc, char *argv[]) {
 	ss << var.a_ << "," << var.b_;
 	ss >> convert;
 	initmsg.insert(9, convert);
+	c.sendData(initmsg);
+	/*
+	char str[] = "ABCDEFG";
+	PrintLexicographicOrder(str, c);
+	clock_t end = clock();
+				double elapsed_secs = double(end - begin);
+				cout << "time taken: " << elapsed_secs << endl;
+	return 0;
+
+
+
+
+*/
+
 
 
 	for(int r = 0; r < var.c_; r++){
 
 		c.sendData(initmsg);
 		counter = 0;
-		if((c.receive(32) == "OKAY")){
 
+	//	if((c.receive(32) == "OKAY")){
+if(1){
 			msg = "";
 			while(msg != "ACCESS ACCEPTED"){
 
 				msg = Bot(var);
+				//cout << msg << endl;
 				c.sendData(msg);
 				msg = c.receive(32);
 				counter++;
 			}
+
+			cout << counter << endl;
 
 
 
@@ -123,7 +148,7 @@ int main(int argc, char *argv[]) {
 				break;
 			}
 
-		}*/
+		}
 		cout <<  counter << endl;
 		}else{
 			cout << "try again!" << endl;
@@ -132,15 +157,17 @@ int main(int argc, char *argv[]) {
 
 		}
 
-	/*	msg = Bot(var);
+		msg = Bot(var);
 
 		cout << "client sends:" << msg << endl;
 		c.sendData(msg);
 		msg = c.receive(32);
 		cout << "got response:" << msg << endl;
-		sleep(1);*/
-
-//	}
+		sleep(1);
+*/
+}
+	}
+}
 
 
 string pwdGen(int strLen, int symbLen){ // random password generator to produce guesses of the password saved in the server
@@ -156,6 +183,22 @@ string pwdGen(int strLen, int symbLen){ // random password generator to produce 
 		}
 
 		return pwdGuess;
+
+}
+
+
+string pwdGen_02(int strLen, int symbLen){
+	const string SYMBOLS = "ABCDEFGHIJKLMNOPQRTSTUVWXYZabcdefghijklmopqrstuvwxyz0123456789";
+			string pwdGuess = string("");
+			char *SymbArray_ = new char [symbLen + 1];
+				strncpy(SymbArray_, SYMBOLS.c_str(), symbLen+1);
+
+			return SymbArray_;
+
+
+
+
+
 
 }
 

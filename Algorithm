@@ -1,0 +1,85 @@
+/*
+ * Algorithm
+ *
+ *  Created on: 20.01.2021
+ *      Author: ubuntu
+ */
+
+#ifndef ALGORITHM_
+#define ALGORITHM_
+
+#include <bits/stdc++.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+#include <cstring>
+#include <iostream>
+#include <unistd.h> //contains various constants
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "SIMPLESOCKET.H"
+#include <sstream>
+#include <chrono>
+#include <ctime>
+using namespace std;
+
+int att = 1;
+
+
+
+
+
+int Compare(const void * a, const void * b)
+{
+    return( *(char *)a - *(char *)b );
+}
+//Recursive function
+//Not lexicographic order
+void PrintPermutationsRecursion (char *str, char* data, int last, int index, TCPclient c)
+{
+    int i, length = strlen(str);
+
+    for ( i=0; i<length; i++ )
+    {
+        data[index] = str[i] ;
+        //print string if it is last index
+        if (index == last)
+        {
+        	att++;
+        	string incoming = "";
+        	c.sendData(data);
+        	incoming = c.receive(32);
+        	//cout << incoming << endl;
+
+            if(incoming.compare(0,15,"ACCESS ACCEPTED") == 0){
+            	cout << "success	" << att << endl;
+            	break;
+            }
+        }
+        //Recurstion for next index if not last index
+        else
+        {
+            PrintPermutationsRecursion(str, data, last, index+1, c);
+        }
+    }
+}
+
+//Print in lexicographic order
+void PrintLexicographicOrder(char *str, TCPclient c)
+{
+    int length = strlen(str) ;
+    char *data = (char *) malloc (sizeof(char) * (length + 1)) ;
+    //Null termination
+    data[length] = '\0';
+    //sort input string in lexicographic order
+    qsort(str, length, sizeof(char), Compare);
+    //Call recursive function on sorted string
+    PrintPermutationsRecursion (str, data, length-1, 0, c);
+    //Free memory
+    free(data);
+}
+
+
+
+#endif /* ALGORITHM_ */

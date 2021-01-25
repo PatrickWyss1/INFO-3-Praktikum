@@ -89,6 +89,7 @@ string BlackBoxSafe::safeInput(string strPwd, int a){
 
 		int b = strPwdSafe.length();
 				if(strPwdSafe.compare(0,b,pwd_) == 0){
+
 				return string("ACCESS ACCEPTED");
 			}
 
