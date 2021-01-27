@@ -75,8 +75,12 @@ void demoTASK1_01(){
 
 BlackBoxSafe::BlackBoxSafe(int pwdLength, int symbSetSize) : BlackBoxUnsafe(pwdLength, symbSetSize){
 
-	pwd_ = sha256(pwd_);
+	pwd_ = sha256(pwd_); // encrypts saved password
 };
+
+/**
+ * \brief compares the encrypted version of the saved password with the incoming password by using the same encryption
+ */
 
 string BlackBoxSafe::safeInput(string strPwd, int a){
 	int len = strPwd.length();

@@ -14,13 +14,10 @@
 #include <stdio.h>
 #include "SIMPLESOCKET.H"
 #include <sstream>
-#include "Algorithm"
-#include <algorithm>
+#include "Algorithm" // contains algorithm that return every possible permutation of a given string through recursive methods (not used here)
+
 
 using namespace std;
-
-int attempts = 1;
-
 
 
 
@@ -30,7 +27,7 @@ int attempts = 1;
  * \brief random password Generator to produce different password guesses based on input parameters
  */
 string pwdGen(int strLen,int symbLen);
-string pwdGen_02(int strLen, int symbLen);
+
 
 /**
  * \class Vars
@@ -54,16 +51,12 @@ public:
 	int c_;
 };
 
-Vars variables();
+//Vars variables(); --no longer in use, explanation at definition
 
 string Bot(Vars a);
-string Bot_02(Vars a);
 
 
 int main(int argc, char *argv[]) {
-	clock_t begin = clock();
-
-
 
 	if(argc != 4){	//checks if an adequate amount of parameters was given when running client.C
 			cout << "Wrong number of command line parameters" << endl;
@@ -85,41 +78,29 @@ int main(int argc, char *argv[]) {
 
 	Vars var;
 
-	sscanf(argv[1], "%i", &var.a_);
-	sscanf(argv[2], "%i", &var.b_);
-	sscanf(argv[3], "%i", &var.c_);
+	sscanf(argv[1], "%i", &var.a_); // "copies" command line arguments (int) into members of Object var of Class Vars
+	sscanf(argv[2], "%i", &var.b_); //
+	sscanf(argv[3], "%i", &var.c_); //
 
-	string initmsg = "makepwd![]";
+	string initmsg = "makepwd![]"; // initialising message to send to server ("makepwd![int, int]" informs the server to create and save a password)
 	string convert;
 	stringstream ss;
-	ss << var.a_ << "," << var.b_;
+	ss << var.a_ << "," << var.b_; //using stringstream to write integers into string without losing their values
 	ss >> convert;
-	initmsg.insert(9, convert);
-	c.sendData(initmsg);
-	/*
-	char str[] = "ABCDEFG";
-	PrintLexicographicOrder(str, c);
-	clock_t end = clock();
-				double elapsed_secs = double(end - begin);
-				cout << "time taken: " << elapsed_secs << endl;
-	return 0;
+	initmsg.insert(9, convert); //inserts the variables into the brackets of initmsg
 
 
 
 
-*/
+	for(int r = 0; r < var.c_; r++){ // Entire process of creating a password and habing the client guess it is run a user defined amount of times (runs)
 
+		c.sendData(initmsg);// sends the initialising message to server
+		int counter = 0; //counter to count attempts needed to crack password
 
-
-	for(int r = 0; r < var.c_; r++){
-
-		c.sendData(initmsg);
-		counter = 0;
-
-	//	if((c.receive(32) == "OKAY")){
-if(1){
+		if((c.receive(32) == "OKAY")){ // response from server indicated successful password creation
 			msg = "";
-			while(msg != "ACCESS ACCEPTED"){
+
+			while(msg.compare(0,15, "ACCESS ACCEPTED") != 0){ // loop to run PwdGen Bot until the correct password is guessed
 
 				msg = Bot(var);
 				//cout << msg << endl;
@@ -130,44 +111,16 @@ if(1){
 
 			cout << counter << endl;
 
-
-
-	/*
-		for(int x = 0; x < var.c; x++){ //loop to send newly generated passwords to server a user-defined amount of times
-			msg = Bot(var);
-			c.sendData(msg);
-			//cout << "Attempt number: " << counter << endl;
-			//cout << "client sends: " << msg << endl;
-			msg = c.receive(32);
-		//	cout << "client received: " << msg << endl;
-			counter++;
-			if(msg == "ACCESS ACCEPTED"){
-				c.sendData("BYEBYE");
-
-				cout << "Hack successful after " << counter-1 << " attempts." << endl;
-				break;
-			}
-
-		}
-		cout <<  counter << endl;
 		}else{
-			cout << "try again!" << endl;
-		}
-	}
-
+			cout << "Communication Error!" << endl; // Error handling in case Password wasnt created in server, indicates server issue
+			exit(0);
 		}
 
-		msg = Bot(var);
 
-		cout << "client sends:" << msg << endl;
-		c.sendData(msg);
-		msg = c.receive(32);
-		cout << "got response:" << msg << endl;
-		sleep(1);
-*/
+
 }
 	}
-}
+
 
 
 string pwdGen(int strLen, int symbLen){ // random password generator to produce guesses of the password saved in the server
@@ -186,55 +139,7 @@ string pwdGen(int strLen, int symbLen){ // random password generator to produce 
 
 }
 
-
-string pwdGen_02(int strLen, int symbLen){
-	const string SYMBOLS = "ABCDEFGHIJKLMNOPQRTSTUVWXYZabcdefghijklmopqrstuvwxyz0123456789";
-			string pwdGuess = string("");
-			char *SymbArray_ = new char [symbLen + 1];
-				strncpy(SymbArray_, SYMBOLS.c_str(), symbLen+1);
-
-			return SymbArray_;
-
-
-
-
-
-
-}
-
-/*string pwdGen_02(int strLen, int symbLen){
-	int symbolIdx;
-		const string SYMBOLS = "ABCDEFGHIJKLMNOPQRTSTUVWXYZabcdefghijklmopqrstuvwxyz0123456789";
-			string pwdGuess = string("");
-			char *SymbArray_ = new char [symbLen + 1];
-				strncpy(SymbArray_, SYMBOLS.c_str(), symbLen+1);
-				string duplicate = "";
-
-			while(duplicate == "TRUE"){
-			for(int i=0; i < strLen; i++){
-				symbolIdx = rand() % symbLen;
-				pwdGuess += SymbArray_[symbolIdx];
-			}
-			for(int n =0; n< 10000; n++){
-				if(pwdGuess == string(Membox[n])){
-					duplicate = "TRUE";
-					break;
-				}else{
-					duplicate = "";
-				}
-			}
-
-			}
-
-			Membox[counter] = pwdGuess;
-
-
-			return pwdGuess;
-
-
-}
-*/
-
+/* -- initial method of getting user input, no longer used as command line argument are easier to use
 
 Vars variables(){ //asks user for input to save the values for Password length, symbol length and guess attempts
 					//returns Object of class Vars which contains the 3 integers
@@ -258,19 +163,12 @@ Vars variables(){ //asks user for input to save the values for Password length, 
 			//var.append(2, runs);
 			return a;
 
-
-
 }
+*/
 
 string Bot(Vars a){ // Returns the guessed password generator by the random password generator
 
 			return pwdGen(a.a_,a.b_);
 
 }
-/*
-string Bot_02(Vars a){
 
-	return pwdGen_02(a.a,a.b);
-}
-
-*/
