@@ -65,6 +65,8 @@ int main(int argc, char *argv[]) {
 		}
 
 
+
+
 	srand(time(NULL));
 	TCPclient c; // initiates client object
 	string host = "localhost";
@@ -81,6 +83,13 @@ int main(int argc, char *argv[]) {
 	sscanf(argv[1], "%i", &var.a_); // "copies" command line arguments (int) into members of Object var of Class Vars
 	sscanf(argv[2], "%i", &var.b_); //
 	sscanf(argv[3], "%i", &var.c_); //
+
+	if((var.a_ < 4) || (var.b_ <= 0) || (var.c_ <= 0)){ //error handling in case of incorrect input
+		cout << "Incorrect values for command line parameters.\n\n1. Argument needs to be 4 or larger.\n2. and 3. Argument needs to be greater than 0.\n" << endl;
+		cout << "TRY AGAIN!" << endl;
+		exit(0);
+
+	}
 
 	string initmsg = "makepwd![]"; // initialising message to send to server ("makepwd![int, int]" informs the server to create and save a password)
 	string convert;
