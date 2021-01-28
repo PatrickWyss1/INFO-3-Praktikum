@@ -60,8 +60,7 @@ if((input.compare(0,8, string("makepwd!")) == 0) && res != 2){ //if previous inp
 	}else{
 			delete box_;						// deletes current BlackBox Object and creates a new one,
 			box_ = new BlackBoxSafe(LENGTH,b);  //
-			cout << "OKAY" << endl;
-			cout << box_->pwd_ << endl;
+
 
 			return string("OKAY");		// returns message indicating success
 
